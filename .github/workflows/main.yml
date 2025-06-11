@@ -1,0 +1,30 @@
+name: .NET CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'  # متوافق مع net9.0
+
+    - name: Restore dependencies
+      run: dotnet restore ToDoSolution_SV/TodoSolution.sln
+
+    - name: Build solution
+      run: dotnet build ToDoSolution_SV/TodoSolution.sln --configuration Release --no-restore
+
+    - name: Run tests (اختياري)
+      run: dotnet test ToDoSolution_SV/TodoSolution.sln --no-build --verbosity normal
