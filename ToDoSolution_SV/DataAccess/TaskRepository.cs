@@ -34,5 +34,14 @@ namespace NTierTodoApp.DataAccess
 
             // TODO: إذا كانت المهمة موجودة، قم بإزالتها من القائمة
         }
+        public void EditTask(int id, string newTitle)
+{
+    var task = _context.Tasks.Find(id); // _context هو ApplicationDbContext
+    if (task != null)
+    {
+        task.Title = newTitle;
+        _context.SaveChanges();
+    }
+}
     }
 }
