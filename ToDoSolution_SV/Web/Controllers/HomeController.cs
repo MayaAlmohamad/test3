@@ -39,5 +39,11 @@ namespace NTierTodoApp.Controllers
             taskService.DeleteTask(id);
             return RedirectToAction("Index");
         }
+        [HttpPost]
+       public IActionResult EditTask(int id, string newTitle)
+      {
+           taskService.EditTask(id, newTitle);
+           return RedirectToAction("Index");
+      }
     }
 }
