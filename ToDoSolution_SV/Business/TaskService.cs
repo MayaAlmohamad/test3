@@ -41,5 +41,14 @@ namespace NTierTodoApp.Business
         {
             // TODO: استدعاء دالة الحذف في طبقة DataAccess
         }
+        public void EditTask(int id, string newTitle)
+{
+    var task = _dbContext.Tasks.Find(id); // أو أي طريقة وصول للبيانات
+    if (task != null)
+    {
+        task.Title = newTitle;
+        _dbContext.SaveChanges();
+    }
+}
     }
 }
